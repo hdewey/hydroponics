@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 2064 1373" style="enable-background:new 0 0 2064 1373;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-width:1.000000e-03;stroke-linecap:round;stroke-miterlimit:288;}
+</style>
+<g id="svgGroup">
+	<path id="front_outsideCutPath" vector-effect="non-scaling-stroke" class="st0" d="M0,979v137.5h17v118.9H0v118.9v18.6h162.6v-17
+		h118.9v17h118.9v-17h118.9v17h118.9H682v-137.5h-17v-118.9h17V997.6V979H519.4v17H400.5v-17H281.5v17H162.6v-17H43.6H0z"/>
+	<path id="left_outsideCutPath" vector-effect="non-scaling-stroke" class="st0" d="M708,979v137.5h-17v118.9h17v118.9v18.6h145.6
+		v-17h118.9v17h118.9v-17h118.9v17h118.9h26.6v-137.5h17v-118.9h-17V997.6V979h-145.6v17h-118.9v-17H972.5v17H853.6v-17H734.6H708z"
+		/>
+	<path id="top_outsideCutPath" vector-effect="non-scaling-stroke" class="st0" d="M1399,708v145.6h-17v118.9h17v118.9h-17v118.9h17
+		v118.9v26.6h145.6v17h118.9v-17h118.9v17h118.9v-17h118.9h26.6v-145.6h17v-118.9h-17V972.5h17V853.6h-17V734.6V708h-145.6v-17
+		h-118.9v17h-118.9v-17h-118.9v17h-118.9H1399z"/>
+	<path id="back_outsideCutPath" vector-effect="non-scaling-stroke" class="st0" d="M0,576v137.5h17v118.9H0v118.9V970h162.6v-17
+		h118.9v17h118.9v-17h118.9v17h118.9H682V832.5h-17V713.5h17V594.6V576H519.4v17H400.5v-17H281.5v17H162.6v-17H43.6H0z"/>
+	<path id="right_outsideCutPath" vector-effect="non-scaling-stroke" class="st0" d="M708,576v137.5h-17v118.9h17v118.9V970h145.6
+		v-17h118.9v17h118.9v-17h118.9v17h118.9h26.6V832.5h17V713.5h-17V594.6V576h-145.6v17h-118.9v-17H972.5v17H853.6v-17H734.6H708z"/>
+	<path id="bottom_outsideCutPath" vector-effect="non-scaling-stroke" class="st0" d="M1399,17v145.6h-17v118.9h17v118.9h-17v118.9
+		h17v118.9V665h145.6v17h118.9v-17h118.9v17h118.9v-17h118.9h26.6V519.4h17V400.5h-17V281.5h17V162.6h-17V43.6V17h-145.6V0h-118.9
+		v17h-118.9V0h-118.9v17h-118.9H1399z"/>
+</g>
+</svg>
