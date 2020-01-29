@@ -50,11 +50,14 @@ const cycle = (res) => {
           })
       },
       function(callback) {
-        let data = await temp();
+        (async () => {
+let data = await temp();
         console.log(data)
         firestore.store(data).then(function() {
           callback();
         })
+        })();
+        
       }
     ], async function (err, result) {
 
@@ -74,7 +77,6 @@ app.get('/', function(req, res,next) {
 var j = schedule.scheduleJob('@hourly', function(){
   cycle(undefined)
 });
-
 
 http.listen(8080, function(){
   console.log('raspberry pi server is listening on *:8080');

@@ -2,7 +2,7 @@
 const {Storage} = require('@google-cloud/storage');
 
 const admin = require('firebase-admin');
-let serviceAccount = require('./secret.json');
+let serviceAccount = require('../secret.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)

@@ -9,7 +9,7 @@ if (!sensorLib.initialize(sensorType, sensorPin)) {
 }
 
 async function read() {
-    let date_ob = new Date();
+    let result = new Date();
     var readout = sensorLib.read();
     const date = `${result.getHours()}-${("0" + (result.getMonth() + 1)).slice(-2)}-${("0" + result.getDate()).slice(-2)}-${result.getFullYear()}`
     let justDate = await date.split('-').splice(1,3).join('-');
@@ -19,7 +19,7 @@ async function read() {
       full_date: await date,
       date: await justDate,
       time: await time,
-    	temperature: await readout.temperature.toFixed(1),
+    	temp: await readout.temperature.toFixed(1),
     	humidity: await readout.humidity.toFixed(1),
       photo: await `https://storage.cloud.google.com/growth-pics/plant_${date}.jpg`
     }
