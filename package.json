@@ -1,0 +1,23 @@
+{
+  "name": "hydroponics",
+  "version": "1.0.0",
+  "description": "pi server for my hydroponic system",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hdewey/hydroponics.git"
+  },
+  "author": "Henry Dewey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hdewey/hydroponics/issues"
+  },
+  "homepage": "https://github.com/hdewey/hydroponics#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
