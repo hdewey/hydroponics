@@ -34,14 +34,14 @@ const turnOff = () => {
 const cycle = (res) => {
   async.waterfall([
       function(callback) {
-         console.log('--------------------------------------------------------------------')
-         snap().then(function() {
-           callback();
-         })
-    },
+        console.log('---cycle-begins--------------------------------------------------------')
+        snap().then(function() {
+          callback();
+        })
+      },
       function(callback) {
           upload().then(function() {
-            setTimeout(function(){ callback()}, 1000)
+            setTimeout(function(){ callback() }, 1000)
           })
       },
       function(callback) {
@@ -51,24 +51,20 @@ const cycle = (res) => {
       },
       function(callback) {
         (async () => {
-let data = await temp();
-        console.log(data)
-        firestore.store(data).then(function() {
-          callback();
-        })
+          let data = await temp();
+          console.log(data)
+          firestore.store(data).then(function() {
+            callback();
+          })
         })();
-        
       }
     ], async function (err, result) {
-
       if (res) {
         res.send('photo taken, uploaded, and deleted.')
       }
-
-      console.log('--------------------------------------------------------------------');
+      console.log('---cycle-ends---------------------------------------------------------');
   });
 }
-
 
 app.get('/', function(req, res,next) {
     res.sendFile(__dirname + '/public/');
@@ -77,6 +73,16 @@ app.get('/', function(req, res,next) {
 var j = schedule.scheduleJob('@hourly', function(){
   cycle(undefined)
 });
+
+var c = schedule.scheduleJob('0 0 8 1/1 * ? *', function() {
+  turnOn();
+  console.log('rise and shine! lights are on.')
+})
+
+var f = schedule.scheduleJob('0 0 21 1/1 * ? *', function() {
+  turnOff();
+  console.log('goodnight... lights off for the night')
+})
 
 http.listen(8080, function(){
   console.log('raspberry pi server is listening on *:8080');
