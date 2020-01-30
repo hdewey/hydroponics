@@ -70,6 +70,16 @@ app.get('/', function(req, res,next) {
     res.sendFile(__dirname + '/public/');
 });
 
+app.get('/admin/lights/on', function(req, res) {
+  turnOn();
+  console.log('lights on (manually)');
+});
+
+app.get('/admin/lights/off', function(req, res) {
+  turnOff();
+  console.log('lights off (manually)');
+});
+
 var j = schedule.scheduleJob('@hourly', function(){
   cycle(undefined)
 });
