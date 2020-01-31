@@ -84,12 +84,12 @@ var j = schedule.scheduleJob('@hourly', function(){
   cycle(undefined)
 });
 
-var c = schedule.scheduleJob('* * 8 * * *', function() {
+var c = schedule.scheduleJob('00 00 8 * * *', function() {
   turnOn();
   console.log('rise and shine! lights are on.')
 })
 
-var f = schedule.scheduleJob('* * 21 * * *', function() {
+var f = schedule.scheduleJob('00 00 21 * * *', function() {
   turnOff();
   console.log('goodnight... lights off for the night')
 })
