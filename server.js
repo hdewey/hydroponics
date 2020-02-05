@@ -11,6 +11,7 @@ const schedule = require('node-schedule');
 let photos = require('./modules/takePhoto');
 let gcp = require('./modules/gcp');
 let dht = require("./modules/sensors");
+let time = require('./modules/checkTime');
 
 var Gpio = require('onoff').Gpio;
 var lights = new Gpio(18, 'out');
@@ -20,15 +21,14 @@ let snap      = photos.snap;
 let temp      = dht.sensor;
 let upload    = gcp.upload;
 let firestore = gcp.firestore;
+let isMorning = time.isMorning;
 
 const turnOn = () => {
   lights.writeSync(1);
-  console.log('lights turned on');
 }
 
 const turnOff = () => {
   lights.writeSync(0);
-  console.log('lights turned off');
 }
 
 const cycle = (res) => {
@@ -80,18 +80,26 @@ app.get('/admin/lights/off', function(req, res) {
   console.log('lights off (manually)');
 });
 
-var j = schedule.scheduleJob('@hourly', function(){
+var jh = schedule.scheduleJob('@hourly', function(){
   cycle(undefined)
 });
 
-var c = schedule.scheduleJob('00 00 8 * * *', function() {
+var w = schedule.scheduleJob('00 00 8 * * *', function() {
   turnOn();
   console.log('rise and shine! lights are on.')
 })
 
-var f = schedule.scheduleJob('00 00 21 * * *', function() {
+var n = schedule.scheduleJob('00 00 21 * * *', function() {
   turnOff();
   console.log('goodnight... lights off for the night')
+})
+
+var m = schedule.scheduleJob('00 * * * * *', function() {
+  if(isMorning) {
+    turnOn();
+  } else {
+    turnOff();
+  }
 })
 
 http.listen(8080, function(){
