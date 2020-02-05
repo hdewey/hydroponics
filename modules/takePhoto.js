@@ -4,7 +4,7 @@ async function takePhoto() {
   try {
     let date_ob = new Date();
       let name = `photos/plant_${date_ob.getHours()}-${("0" + (date_ob.getMonth() + 1)).slice(-2)}-${("0" + date_ob.getDate()).slice(-2)}-${date_ob.getFullYear()}.jpg`
-      const { stdout, stderr } = await exec(`fswebcam ${name}`);
+      const { stdout, stderr } = await exec(`fswebcam --no-banner ${name}`);
       console.log('stdout:', stdout);
       console.log('stderr:', stderr);
   } catch (err) {
