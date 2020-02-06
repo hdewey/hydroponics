@@ -1,6 +1,5 @@
-let date = new Date();
-
-const isMorning = async () => {
+const isDay = async () => {
+  let date = new Date();
   let hours = date.getHours()
   if (hours < 8 || hours > 21) {
     return false
@@ -9,4 +8,4 @@ const isMorning = async () => {
   }
 }
 
-module.exports.time = isMorning;
+module.exports.isDay = isDay;
