@@ -11,17 +11,20 @@ const schedule = require('node-schedule');
 let photos = require('./modules/takePhoto');
 let gcp = require('./modules/gcp');
 let dht = require("./modules/sensors");
-let time = require('./modules/checkTime');
+let checkTime   = require('./modules/checkTime');
+let checkLights = require('./modules/checkLights');
+
 
 var Gpio = require('onoff').Gpio;
 var lights = new Gpio(18, 'out');
 
-let remove    = photos.delete;
-let snap      = photos.snap;
-let temp      = dht.sensor;
-let upload    = gcp.upload;
-let firestore = gcp.firestore;
-let isMorning = time.isMorning;
+let remove     = photos.delete;
+let snap       = photos.snap;
+let temp       = dht.sensor;
+let upload     = gcp.upload;
+let firestore  = gcp.firestore;
+let isDay      = checkTime.isDay;
+let readLights = checkLights.readLights;
 
 const turnOn = () => {
   lights.writeSync(1);
@@ -52,7 +55,6 @@ const cycle = (res) => {
       function(callback) {
         (async () => {
           let data = await temp();
-          console.log(data)
           firestore.store(data).then(function() {
             callback();
           })
@@ -63,14 +65,14 @@ const cycle = (res) => {
         res.send('photo taken, uploaded, and deleted.')
       }
       console.log('---cycle-ends---------------------------------------------------------');
-  });
+  });s
 }
 
 app.get('/', function(req, res,next) {
     res.sendFile(__dirname + '/public/');
 });
 
-app.get('/admin/lights/on', function(req, res) {
+app.get('/admin/lights/on', function(req, res) {sss
   turnOn();
   console.log('lights on (manually)');
 });
@@ -80,7 +82,7 @@ app.get('/admin/lights/off', function(req, res) {
   console.log('lights off (manually)');
 });
 
-var jh = schedule.scheduleJob('@hourly', function(){
+var h = schedule.scheduleJob('@hourly', function(){
   cycle(undefined)
 });
 
@@ -94,11 +96,18 @@ var n = schedule.scheduleJob('00 00 21 * * *', function() {
   console.log('goodnight... lights off for the night')
 })
 
-var m = schedule.scheduleJob('00 * * * * *', function() {
-  if(isMorning) {
-    turnOn();
+var m = schedule.scheduleJob('05 * * * * *', async function() {
+
+  if(await isDay()) {
+    if(await readLights() == 0) {
+      console.log('lights were found off, turned on')
+      turnOn();
+    }
   } else {
-    turnOff();
+    if(await readLights() == 1) {
+      console.log('lights were found on, turned off');
+      turnOff();
+    }
   }
 })
 
