@@ -9,21 +9,24 @@ admin.initializeApp({
 });
 
 const storage = new Storage();
+
 async function uploadFile(name) {
   new Promise(function(resolve, reject) {
-    let date_ob = new Date();
-    resolve(date_ob)
+    let date = new Date();
+    resolve(date)
   }).then(function(result) {
-    let name = `photos/plant_${result.getHours()}-${("0" + (result.getMonth() + 1)).slice(-2)}-${("0" + result.getDate()).slice(-2)}-${result.getFullYear()}.jpg`
-    return name
+    let find = `photos/plant_${result.getHours()}-${("0" + (result.getMonth() + 1)).slice(-2)}-${("0" + result.getDate()).slice(-2)}-${result.getFullYear()}.jpg`
+    let dest = `${("0" + (result.getMonth() + 1)).slice(-2)}-${("0" + result.getDate()).slice(-2)}-${result.getFullYear()}/plant_${result.getHours()}.jpg`
+    return {find: find, dest: dest}
   }).then(function(result) {
-    const bucketName = 'growth-pics';
+    const bucketName = 'sorted-pics';
     storage.bucket(bucketName).upload(result, {
+      destination: result.dest,
       gzip: true,
       metadata: {
       },
     });
-    console.log(`${result} uploaded to ${bucketName}.`);
+    console.log(`${result.dest} uploaded to ${bucketName}.`);
   });
 }
 

@@ -1,5 +1,5 @@
-var exec = require('child_process').exec;
-var command = `export GOOGLE_APPLICATION_CREDENTIALS="/home/pi/Desktop/pi-server/hydroponics-2571000856b9.json"`
+// var exec = require('child_process').exec;
+// var command = `export GOOGLE_APPLICATION_CREDENTIALS="/home/pi/Desktop/pi-server/hydroponics-2571000856b9.json"`
 
 var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');

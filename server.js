@@ -3,7 +3,7 @@ var http = require('http').createServer(app);
 
 const async = require('async');
 
-const path = require('path');
+// const path = require('path');
 const io = require('socket.io')();
 const schedule = require('node-schedule');
 
@@ -12,11 +12,7 @@ let photos = require('./modules/takePhoto');
 let gcp = require('./modules/gcp');
 let dht = require("./modules/sensors");
 let checkTime   = require('./modules/checkTime');
-let checkLights = require('./modules/checkLights');
-
-
-var Gpio = require('onoff').Gpio;
-var lights = new Gpio(18, 'out');
+let lights = require('./modules/checkLights').readLights;
 
 let remove     = photos.delete;
 let snap       = photos.snap;
@@ -24,15 +20,9 @@ let temp       = dht.sensor;
 let upload     = gcp.upload;
 let firestore  = gcp.firestore;
 let isDay      = checkTime.isDay;
-let readLights = checkLights.readLights;
-
-const turnOn = () => {
-  lights.writeSync(1);
-}
-
-const turnOff = () => {
-  lights.writeSync(0);
-}
+let readLights = lights.read;
+let turnOn     = lights.on;
+let turnOff    = lights.off;
 
 const cycle = (res) => {
   async.waterfall([
